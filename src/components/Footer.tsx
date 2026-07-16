@@ -8,9 +8,19 @@ export function Footer() {
         >
           N<span className="text-terra">.</span>
         </span>
-        <p className="text-xs text-white/25">
-          © 2026 Mikolaj Szczelkun · Barcelona
-        </p>
+        <div className="flex flex-col items-end gap-1">
+          <p className="text-xs text-white/25">
+            © 2026 Mikolaj Szczelkun · Barcelona
+          </p>
+          <a
+            href="https://nico-portfolio-gold.vercel.app"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-xs text-white/25 hover:text-white/40 transition-colors"
+          >
+            Built by Mikołaj Szczełkun ↗
+          </a>
+        </div>
       </div>
     </footer>
   );
