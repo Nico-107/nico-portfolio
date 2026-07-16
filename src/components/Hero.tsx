@@ -31,6 +31,10 @@ export function Hero() {
             Nico
           </p>
 
+          <p className="mt-2 text-xs text-white/25">
+            Mikołaj Szczełkun — also written Mikolaj Szczelkun
+          </p>
+
           <p className="mt-6 text-base text-white/60 max-w-lg leading-relaxed">
             I'm 18, studying at La Salle Barcelona (Universitat Ramon Llull){' '}
             <span className="text-white/35">
