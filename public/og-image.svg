@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <rect width="1200" height="630" fill="#0c1018"/>
+  <!-- Background glow -->
+  <ellipse cx="900" cy="200" rx="380" ry="280" fill="#c45f2e" opacity="0.07"/>
+  <ellipse cx="100" cy="500" rx="280" ry="200" fill="#d48c22" opacity="0.05"/>
+  <!-- Name -->
+  <text x="80" y="200" font-family="Georgia, 'Times New Roman', serif" font-size="88" font-weight="600" fill="#f5f2ed" letter-spacing="-2">Mikolaj</text>
+  <text x="80" y="300" font-family="Georgia, 'Times New Roman', serif" font-size="88" font-weight="600" fill="#f5f2ed" letter-spacing="-2">Szczelkun</text>
+  <circle cx="982" cy="296" r="12" fill="#c45f2e"/>
+  <!-- Tagline -->
+  <text x="80" y="370" font-family="Georgia, serif" font-size="28" font-style="italic" fill="#d48c22" opacity="0.85">Nico</text>
+  <!-- Subtitle -->
+  <text x="80" y="430" font-family="system-ui, sans-serif" font-size="22" fill="#f5f2ed" opacity="0.45">18-year-old builder from Barcelona, by way of four continents.</text>
+  <!-- Divider line -->
+  <line x1="80" y1="480" x2="400" y2="480" stroke="#c45f2e" stroke-width="1.5" opacity="0.3"/>
+  <!-- Bottom label -->
+  <text x="80" y="520" font-family="system-ui, sans-serif" font-size="16" fill="#f5f2ed" opacity="0.25" letter-spacing="3">BARCELONA · LA SALLE URL</text>
+</svg>
