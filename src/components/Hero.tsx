@@ -60,7 +60,7 @@ export function Hero() {
         <div className="flex items-center justify-center order-first lg:order-last">
           <div className="w-52 h-52 sm:w-64 sm:h-64 lg:w-72 lg:h-72 rounded-2xl overflow-hidden border border-white/10 bg-surface-2 flex-shrink-0">
             <img
-              src="/Profile.jpeg"
+              src="/profile.jpg"
               alt="Mikolaj Szczelkun"
               className="w-full h-full object-cover object-center"
             />
