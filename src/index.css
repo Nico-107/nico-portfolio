@@ -1,50 +1,155 @@
 @import "tailwindcss";
 @import "flag-icons/css/flag-icons.min.css";
 
+/* ─── DESIGN TOKENS ─────────────────────────────────────────────────────────── */
 @theme {
-  /* Palette */
-  --color-ink: #0c1018;
-  --color-paper: #f5f2ed;
-  --color-terra: #c45f2e;
-  --color-amber: #d48c22;
-  --color-stone: #e0d9d0;
-  --color-graphite: #404560;
-  --color-muted: #8590a8;
-  --color-surface: #13172b;
-  --color-surface-2: #1c2240;
+  /* ── Newsprint palette (active) ────────────────────────────────────────────── */
+  --color-paper:      #F6F3EA;   /* warm off-white — page background               */
+  --color-ink:        #17161A;   /* near-black — headings, heavy body text          */
+  --color-accent:     #7A1E22;   /* oxblood — links, rules, highlighted word        */
+
+  /* Gray scale (warm-tinted, not blue-gray) */
+  --color-mid:        #3D3B40;   /* secondary body text on paper                    */
+  --color-muted:      #6B6760;   /* captions, labels, timeline meta                 */
+  --color-dim:        #A8A49C;   /* placeholder, very secondary                     */
+
+  /* Surfaces */
+  --color-rule:       #D9D4C7;   /* horizontal rules, card borders                  */
+  --color-surface:    #EFEADE;   /* subtle card / code backgrounds                  */
+
+  /*
+   * ── Alternative palette — warm cream + deep olive + ochre ─────────────────
+   * Swap the block below in to try it; comment the Newsprint block out.
+   *
+   * --color-paper:   #F7F4E8;
+   * --color-ink:     #1A1C14;
+   * --color-accent:  #5C6B2E;   deep olive
+   * --color-mid:     #34361F;
+   * --color-muted:   #6E6B52;
+   * --color-dim:     #A09C82;
+   * --color-rule:    #D8D3BC;
+   * --color-surface: #EDE9D6;
+   *
+   * ── Option B accent (ink-blue, drop-in swap) ──────────────────────────────
+   * --color-accent:  #16324F;
+   */
 
   /* Typography */
   --font-display: 'Fraunces', Georgia, serif;
-  --font-body: 'Inter', system-ui, sans-serif;
-  --font-mono: 'SF Mono', 'Fira Code', monospace;
+  --font-body:    'Newsreader', Georgia, serif;
+  --font-mono:    'IBM Plex Mono', 'SF Mono', monospace;
+
+  /* Leading scale */
+  --leading-tightest: 0.92;
+  --leading-tight:    1.08;
+  --leading-snug:     1.24;
+  --leading-normal:   1.48;
+  --leading-loose:    1.65;
+
+  /* Measure */
+  --measure: 66ch;
 }
 
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-}
+/* ─── RESET & BASE ───────────────────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; }
 
 html {
   scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
 }
 
 body {
   margin: 0;
   font-family: var(--font-body);
-  background-color: var(--color-ink);
+  font-size: 1.0625rem;
+  line-height: var(--leading-loose);
+  background-color: var(--color-paper);
   color: var(--color-ink);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  hanging-punctuation: first last;
 }
 
-/* Scroll-reveal animation */
+/* ─── FONT UTILITIES ─────────────────────────────────────────────────────────── */
+
+/* Fraunces with soft/wonk axes — use this instead of repeated inline style */
+.font-fraunces {
+  font-family: var(--font-display);
+  font-variation-settings: 'SOFT' 100, 'WONK' 1;
+}
+
+/* Large display use */
+.display {
+  font-family: var(--font-display);
+  font-variation-settings: 'SOFT' 100, 'WONK' 1;
+  font-weight: 300;
+  line-height: var(--leading-tightest);
+  letter-spacing: -0.025em;
+}
+
+/* Eyebrow / meta labels in mono */
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+}
+
+/* Inline mono (dates, locations, captions) */
+.mono {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.03em;
+}
+
+/* Body text measure constraint */
+.measure { max-width: var(--measure); }
+
+/* ─── EDITORIAL ELEMENTS ─────────────────────────────────────────────────────── */
+
+/* Drop cap: Fraunces initial on the opening paragraph of a section */
+.drop-cap::first-letter {
+  font-family: var(--font-display);
+  font-variation-settings: 'SOFT' 100, 'WONK' 1;
+  font-weight: 300;
+  font-size: 4.5em;
+  line-height: 0.76;
+  float: left;
+  margin-right: 0.07em;
+  margin-top: 0.1em;
+  color: var(--color-accent);
+}
+
+/* Pull-quote: inherits text color so it works on both light and dark backgrounds */
+.pull-quote {
+  font-family: var(--font-display);
+  font-variation-settings: 'SOFT' 100, 'WONK' 1;
+  font-style: italic;
+  font-weight: 300;
+  font-size: 1.3rem;
+  line-height: var(--leading-snug);
+  color: inherit;
+  border-left: 2px solid currentColor;
+  opacity: 0.85;
+  padding-left: 1.125rem;
+  margin: 0;
+}
+
+/* Horizontal rule */
+.rule {
+  border: none;
+  border-top: 1px solid var(--color-rule);
+}
+
+/* ─── SCROLL-REVEAL ANIMATION ─────────────────────────────────────────────────── */
 .reveal {
   opacity: 0;
-  transform: translateY(22px);
+  transform: translateY(14px);
   transition:
-    opacity 0.65s cubic-bezier(0.25, 0.46, 0.45, 0.94),
-    transform 0.65s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    opacity 0.48s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+    transform 0.48s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 .reveal-visible {
@@ -52,11 +157,19 @@ body {
   transform: translateY(0);
 }
 
-/* Eyebrow label */
-.eyebrow {
-  font-family: var(--font-body);
-  font-size: 0.68rem;
-  font-weight: 600;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
 }
+
+/* ─── GLOBAL LINK STYLE ──────────────────────────────────────────────────────── */
+a {
+  color: var(--color-accent);
+  text-decoration-color: color-mix(in srgb, var(--color-accent) 30%, transparent);
+  text-underline-offset: 0.18em;
+  transition: text-decoration-color 0.15s;
+}
+a:hover { text-decoration-color: var(--color-accent); }

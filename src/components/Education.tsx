@@ -1,27 +1,42 @@
 import { Reveal } from './Reveal';
 
 interface School {
-  monogram: string;
   name: string;
-  sub?: string;
-  credential: string;
+  program: string;
+  meta: string;       /* grades / credential in mono */
   location: string;
-  current: boolean;
+  current?: boolean;
 }
 
 const SCHOOLS: School[] = [
   {
-    monogram: 'BCG',
-    name: 'The British College of Gavà',
-    credential: 'IB Diploma',
-    location: 'Gavà, Spain',
-    current: false,
+    name: 'Singapore International School of Shanghai',
+    program: 'SISS',
+    meta: 'Grades 2–3',
+    location: 'Shanghai, China',
   },
   {
-    monogram: 'LS',
+    name: 'Western International School of Shanghai',
+    program: 'IB Primary Years Programme (PYP)',
+    meta: 'Grades 4–5',
+    location: 'Shanghai, China',
+  },
+  {
+    name: 'Highlands School',
+    program: 'Spanish ESO curriculum',
+    meta: 'Grades 6–10',
+    location: 'Barcelona, Spain',
+  },
+  {
+    name: 'The British College of Gavà',
+    program: 'IB Diploma Programme',
+    meta: 'Grades 11–12',
+    location: 'Gavà, Spain',
+  },
+  {
     name: 'La Salle Barcelona',
-    sub: 'Universitat Ramon Llull',
-    credential: 'Currently enrolled',
+    program: 'Digital Business & Innovation — Universitat Ramon Llull',
+    meta: 'Current',
     location: 'Barcelona, Spain',
     current: true,
   },
@@ -29,70 +44,52 @@ const SCHOOLS: School[] = [
 
 export function Education() {
   return (
-    <section className="bg-paper py-24 sm:py-32">
-      <div className="mx-auto max-w-3xl px-6 lg:px-10">
+    <section id="education" className="bg-paper py-14 sm:py-20">
+      <div className="mx-auto max-w-5xl px-6 lg:px-12">
+
         <Reveal>
-          <p className="eyebrow text-terra">Education</p>
-          <h2
-            className="mt-3 text-4xl font-semibold text-ink sm:text-5xl"
-            style={{ fontFamily: 'var(--font-display)' }}
-          >
+          <p className="eyebrow">Education</p>
+          <h2 className="font-fraunces mt-3 text-3xl sm:text-4xl font-light text-ink leading-snug">
             Where I studied.
           </h2>
+          <p className="mt-2 text-sm text-[var(--color-muted)] max-w-md">
+            The earlier years — Germany, Vietnam, Singapore — are in the Journey above.
+          </p>
         </Reveal>
 
-        <div className="mt-14 grid gap-5 sm:grid-cols-2">
-          {SCHOOLS.map((s, i) => (
-            <Reveal key={s.name} delay={i * 100}>
-              <div
-                className={`rounded-2xl border-2 p-8 h-full flex flex-col ${
-                  s.current
-                    ? 'border-terra/35 bg-terra/5'
-                    : 'border-stone bg-white'
-                }`}
-              >
-                {/* Monogram badge */}
-                <div
-                  className={`w-11 h-11 rounded-xl flex items-center justify-center mb-6 ${
-                    s.current
-                      ? 'bg-terra text-white'
-                      : 'bg-ink text-paper'
-                  }`}
-                >
-                  <span
-                    className="text-[11px] font-bold tracking-tighter"
-                    style={{ fontFamily: 'var(--font-display)' }}
-                  >
-                    {s.monogram}
-                  </span>
-                </div>
+        <hr className="rule mt-8" />
 
-                <div className="flex-1">
+        <ol className="mt-2 divide-y divide-[var(--color-rule)]">
+          {SCHOOLS.map((s, i) => (
+            <Reveal key={s.name} delay={i * 55}>
+              <li className="py-6 grid sm:grid-cols-[1fr_auto] gap-1 sm:gap-8 items-baseline">
+                <div>
                   <h3
-                    className="text-xl font-semibold text-ink leading-snug"
-                    style={{ fontFamily: 'var(--font-display)' }}
+                    className={`font-fraunces text-[1.1rem] font-semibold leading-snug ${
+                      s.current ? 'text-accent' : 'text-ink'
+                    }`}
                   >
                     {s.name}
                   </h3>
-                  {s.sub && (
-                    <p className="mt-0.5 text-sm text-graphite">{s.sub}</p>
-                  )}
+                  <p className="mt-0.5 text-sm italic text-[var(--color-muted)]">
+                    {s.program}
+                  </p>
+                  <p className="mt-0.5 mono text-[var(--color-dim)]">
+                    {s.location}
+                  </p>
                 </div>
-
-                <div className="mt-6 pt-5 border-t border-stone/70 flex items-center justify-between gap-3 flex-wrap">
-                  <span
-                    className={`text-sm font-semibold ${
-                      s.current ? 'text-terra' : 'text-graphite'
-                    }`}
-                  >
-                    {s.credential}
-                  </span>
-                  <span className="text-xs text-muted">{s.location}</span>
-                </div>
-              </div>
+                <span
+                  className={`mono shrink-0 text-right ${
+                    s.current ? 'text-accent' : 'text-[var(--color-dim)]'
+                  }`}
+                >
+                  {s.meta}
+                </span>
+              </li>
             </Reveal>
           ))}
-        </div>
+        </ol>
+
       </div>
     </section>
   );

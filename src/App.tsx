@@ -1,12 +1,12 @@
-import { Nav } from './components/Nav';
-import { Hero } from './components/Hero';
-import { Journey } from './components/Journey';
-import { Languages } from './components/Languages';
+import { Nav }       from './components/Nav';
+import { Hero }      from './components/Hero';
+import { Approach }  from './components/Approach';   /* "About" — spine of the site */
+import { Journey }   from './components/Journey';
 import { Education } from './components/Education';
-import { Projects } from './components/Projects';
-import { Approach } from './components/Approach';
-import { Contact } from './components/Contact';
-import { Footer } from './components/Footer';
+import { Languages } from './components/Languages';
+import { Projects }  from './components/Projects';
+import { Contact }   from './components/Contact';
+import { Footer }    from './components/Footer';
 
 function App() {
   return (
@@ -14,11 +14,11 @@ function App() {
       <Nav />
       <main>
         <Hero />
-        <Journey />
-        <Languages />
-        <Education />
-        <Projects />
         <Approach />
+        <Journey />
+        <Education />
+        <Languages />
+        <Projects />
         <Contact />
       </main>
       <Footer />

@@ -6,6 +6,7 @@ interface Project {
   screenshot: string;
   displayUrl: string | null;
   link: string | null;
+  github: string | null;
   summary: string;
   description: string;
   details: string[];
@@ -15,10 +16,11 @@ interface Project {
 const PROJECTS: Project[] = [
   {
     name: 'Tapiko',
-    logo: '/Screenshot 2026-07-16 at 11.49.43.png',
+    logo: '/Screenshot 2026-07-16 at 11.49.43.png', /* TODO: rename to tapiko-logo.png */
     screenshot: '/tapiko-screenshot.png',
     displayUrl: null,
     link: null,
+    github: 'https://github.com/Nico-107/tapiko-connect-web',
     summary: 'NFC-embedded 3D-printed plaques for restaurants and cafés.',
     description:
       'Designed and manufactured in Barcelona. Customers tap the plaque to land on reviews, socials, or a menu — no app required. Built the full stack myself: React with TanStack Start, trilingual (EN/ES/CA), Supabase-backed lead capture, and a live 3D product configurator.',
@@ -31,16 +33,17 @@ const PROJECTS: Project[] = [
   },
   {
     name: 'Dimension3D',
-    logo: '/Screenshot 2026-07-16 at 11.37.55.png',
+    logo: '/Screenshot 2026-07-16 at 11.37.55.png', /* TODO: rename to dimension3d-logo.png */
     screenshot: '/dimension3d-screenshot.png',
     displayUrl: 'dimension3dprints.com',
     link: 'https://www.dimension3dprints.com',
+    github: null,
     summary: 'On-demand 3D printing service based in Barcelona.',
     description:
-      'Started as a no-code build, then migrated to a prerendered Vite/React codebase when I needed SEO and performance control that no-code platforms couldn\'t give. The site has 61+ prerendered routes across three languages, a live STL viewer so customers can preview their uploaded file before ordering, and Stripe for payments.',
+      'Started as a no-code build, then migrated to a prerendered Vite/React codebase when I needed SEO and performance control. 61+ prerendered routes across three languages, a live STL viewer, and Stripe for payments.',
     details: [
-      'Audited all 61+ prerendered routes against actual build output and fixed a missing Catalan homepage, a robots.txt misconfiguration exposing the admin panel to search engines, and duplicate SEO tags across pages.',
-      'Found and fixed a silent analytics bug: PostHog showed zero conversions over 90 days despite real paying customers. The events were firing before analytics initialization completed and getting dropped. Fixed with a queue-based buffer.',
+      'Audited all 61+ prerendered routes against actual build output and fixed a missing Catalan homepage, a robots.txt misconfiguration, and duplicate SEO tags.',
+      'Found and fixed a silent analytics bug: PostHog showed zero conversions over 90 days despite real paying customers. Events were firing before analytics initialized and getting dropped. Fixed with a queue-based buffer.',
       'The STL viewer uses Three.js to load and render user-uploaded geometry files directly in the browser — no server-side processing.',
     ],
     stack: ['React', 'Vite', 'Three.js', 'Supabase', 'Stripe', 'EN/ES/CA'],
@@ -51,13 +54,14 @@ const PROJECTS: Project[] = [
     screenshot: '/printtrack-screenshot.png',
     displayUrl: 'printrack.xyz',
     link: 'https://www.printrack.xyz',
+    github: null,
     summary: 'Free business management tool for 3D printing operators.',
     description:
-      'A free SaaS tool for other 3D-printing operators to manage customers, pricing, and invoicing — available in six languages. Built PDF invoice generation, Google OAuth with cloud sync, and gcode/3mf file import for calculating print costs from actual slice data.',
+      'A free SaaS tool for other 3D-printing operators to manage customers, pricing, and invoicing — available in six languages. PDF invoice generation, Google OAuth with cloud sync, and gcode/3mf file import for calculating print costs from actual slice data.',
     details: [
-      'Added a migration path for early users who\'d started in local-only storage: their existing data carries over automatically to cloud sync when they sign in with Google.',
-      'Identified the real problem wasn\'t traffic but activation — new users landed on an empty dashboard and left. Built a pre-populated first-run demo experience so there\'s something to interact with immediately.',
-      'gcode and 3mf file import lets operators drag in a slice file and get a cost estimate based on actual print time and material usage rather than a manual guess.',
+      'Added a migration path for early users who\'d started in local-only storage: their existing data carries over automatically when they sign in with Google.',
+      'Identified the real problem wasn\'t traffic but activation — new users landed on an empty dashboard and left. Built a pre-populated first-run demo experience.',
+      'gcode and 3mf file import lets operators drag in a slice file and get a cost estimate based on actual print time and material usage.',
     ],
     stack: ['React', 'Supabase', 'Vercel', '6 languages'],
   },
@@ -67,132 +71,124 @@ const PROJECTS: Project[] = [
     screenshot: '/paythra-screenshot.png',
     displayUrl: 'paythra.com',
     link: 'https://paythra.com',
+    github: null,
     summary: 'Finds subscriptions and recurring charges people have forgotten about.',
     description:
-      'Started in a university entrepreneurship course; I built the technical side solo and own the GitHub repo, Stripe account, Supabase project, and Vercel deployment. Detects subscriptions automatically by scanning Gmail, with confidence scoring to separate confirmed charges from guesses. One-time payment, no subscription.',
+      'Started in a university entrepreneurship course; I built the technical side solo. Detects subscriptions automatically by scanning Gmail, with confidence scoring to separate confirmed charges from guesses. One-time payment, no subscription.',
     details: [
-      'Gmail detection was the hardest part. Several backend approaches failed — server-side Gmail API access hit OAuth scope and token-refresh complexity that wasn\'t worth the architecture cost. Ended up with a working frontend-only architecture using Google Identity Services, which runs entirely in the browser.',
-      'Confidence scoring classifies each detected charge: high-confidence matches get shown immediately, lower-confidence ones are grouped separately so users can review them rather than trusting every result blindly.',
-      'Built and submitted as the technical deliverable for a university entrepreneurship course; the product side was a team effort, the codebase is mine.',
+      'Gmail detection was the hardest part. Several backend approaches failed — ended up with a working frontend-only architecture using Google Identity Services.',
+      'Confidence scoring classifies each detected charge: high-confidence matches shown immediately, lower-confidence ones grouped separately for review.',
+      'Built and submitted as the technical deliverable for a university entrepreneurship course; the codebase is mine.',
     ],
     stack: ['React', 'Supabase', 'Stripe', 'Google Identity Services'],
   },
 ];
 
-function ArrowIcon() {
+function ExternalIcon() {
   return (
-    <svg
-      width="13"
-      height="13"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      aria-hidden
-    >
+    <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
       <path d="M7 17L17 7M17 7H7M17 7v10" />
     </svg>
   );
 }
 
-function BrowserMockup({ src, alt, url }: { src: string; alt: string; url: string | null }) {
+function GitHubIcon() {
   return (
-    <div className="rounded-xl overflow-hidden border border-stone shadow-md">
-      {/* Fake browser chrome */}
-      <div className="bg-stone/60 px-4 py-2.5 flex items-center gap-3 border-b border-stone">
-        <div className="flex gap-1.5 flex-shrink-0">
-          <div className="w-2.5 h-2.5 rounded-full bg-stone" />
-          <div className="w-2.5 h-2.5 rounded-full bg-stone" />
-          <div className="w-2.5 h-2.5 rounded-full bg-stone" />
-        </div>
-        <div className="flex-1 min-w-0 bg-white/70 rounded-md px-3 py-1 text-xs text-muted font-mono truncate">
-          {url ?? 'Not yet public'}
-        </div>
-      </div>
-      {/* Screenshot */}
-      <div className="h-56 sm:h-64 overflow-hidden bg-stone/30">
-        <img
-          src={src}
-          alt={alt}
-          className="w-full h-full object-cover object-top"
-        />
-      </div>
-    </div>
+    <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" aria-hidden>
+      <path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" />
+    </svg>
   );
 }
 
-function ProjectBlock({ project, index }: { project: Project; index: number }) {
+function ProjectCard({ project, index }: { project: Project; index: number }) {
   return (
     <Reveal delay={index * 60}>
-      <article className="rounded-2xl border border-stone bg-white overflow-hidden">
-        {/* Header */}
-        <div className="px-7 pt-7 pb-5 border-b border-stone/60">
-          <div className="flex items-start justify-between gap-4 flex-wrap">
-            <div className="flex items-center gap-3">
-              <img
-                src={project.logo}
-                alt={`${project.name} logo`}
-                className="h-7 w-auto object-contain flex-shrink-0"
-              />
-              <h3
-                className="text-xl font-semibold text-ink"
-                style={{ fontFamily: 'var(--font-display)' }}
+      <article className="border-t border-[var(--color-rule)] pt-8 pb-2">
+
+        {/* Header row */}
+        <div className="flex items-start justify-between gap-4 flex-wrap">
+          <div className="flex items-center gap-3">
+            <img
+              src={project.logo}
+              alt={`${project.name} logo`}
+              loading="lazy"
+              className="h-6 w-auto object-contain flex-shrink-0"
+            />
+            <h3 className="font-fraunces text-xl font-semibold text-ink leading-none">
+              {project.name}
+            </h3>
+          </div>
+          <div className="flex items-center gap-4 flex-shrink-0">
+            {project.github && (
+              <a
+                href={project.github}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-1.5 mono text-[0.6875rem] text-[var(--color-muted)] hover:text-ink no-underline transition-colors"
               >
-                {project.name}
-              </h3>
-            </div>
+                <GitHubIcon /> GitHub
+              </a>
+            )}
             {project.link ? (
               <a
                 href={project.link}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-1.5 text-sm font-medium text-terra hover:text-terra/70 transition-colors flex-shrink-0"
+                className="flex items-center gap-1 mono text-[0.6875rem] text-accent no-underline hover:opacity-75 transition-opacity"
               >
-                {project.displayUrl} <ArrowIcon />
+                {project.displayUrl} <ExternalIcon />
               </a>
             ) : (
-              <span className="text-sm text-muted">Not yet public</span>
+              <span className="mono text-[0.6875rem] text-[var(--color-dim)]">Not yet public</span>
             )}
           </div>
-          <p className="mt-2 text-sm text-graphite">{project.summary}</p>
         </div>
 
-        {/* Screenshot */}
-        <div className="px-7 pt-6">
-          <BrowserMockup
+        <p className="mt-2 text-sm text-[var(--color-muted)] italic">{project.summary}</p>
+
+        {/* Screenshot — 16:10 aspect ratio, object-top so headlines stay visible */}
+        <div
+          className="mt-5 overflow-hidden rounded-lg border border-[var(--color-rule)] bg-[var(--color-surface)]"
+          style={{ aspectRatio: '16 / 10' }}
+        >
+          <img
             src={project.screenshot}
             alt={`${project.name} screenshot`}
-            url={project.displayUrl}
+            loading="lazy"
+            className="w-full h-full object-cover object-top"
           />
         </div>
 
         {/* Body */}
-        <div className="px-7 py-6">
-          <p className="text-sm text-graphite leading-relaxed">{project.description}</p>
+        <div className="mt-6 lg:grid lg:grid-cols-[1fr_280px] lg:gap-10">
+          <div>
+            <p className="text-[var(--color-mid)] text-[0.9375rem] leading-[1.65]">
+              {project.description}
+            </p>
+            <ul className="mt-4 space-y-2.5 list-none p-0 m-0">
+              {project.details.map((detail, i) => (
+                <li key={i} className="flex gap-3 text-[0.9rem] text-[var(--color-muted)] leading-relaxed">
+                  <span className="mt-2 flex-shrink-0 w-1 h-1 rounded-full bg-accent/60 inline-block" />
+                  <span>{detail}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
 
-          <ul className="mt-5 space-y-2.5">
-            {project.details.map((detail, i) => (
-              <li key={i} className="flex gap-3 text-sm text-graphite leading-relaxed">
-                <span className="mt-1.5 flex-shrink-0 w-1.5 h-1.5 rounded-full bg-terra/50" />
-                <span>{detail}</span>
-              </li>
-            ))}
-          </ul>
-
-          {/* Stack tags */}
-          <div className="mt-6 flex flex-wrap gap-1.5">
-            {project.stack.map((tag) => (
-              <span
-                key={tag}
-                className="rounded-full bg-stone/60 px-2.5 py-0.5 text-xs text-graphite"
-              >
-                {tag}
-              </span>
-            ))}
+          {/* Stack in mono — column at large, inline row at small */}
+          <div className="mt-6 lg:mt-0">
+            <p className="mono text-[var(--color-dim)] mb-2">Stack</p>
+            <ul className="flex flex-wrap lg:flex-col gap-1.5 lg:gap-1 list-none p-0 m-0">
+              {project.stack.map((tag) => (
+                <li key={tag} className="mono text-[var(--color-muted)]">
+                  {tag}
+                </li>
+              ))}
+            </ul>
           </div>
         </div>
+
       </article>
     </Reveal>
   );
@@ -200,26 +196,25 @@ function ProjectBlock({ project, index }: { project: Project; index: number }) {
 
 export function Projects() {
   return (
-    <section id="projects" className="bg-paper py-24 sm:py-32">
-      <div className="mx-auto max-w-4xl px-6 lg:px-10">
+    <section id="projects" className="bg-paper py-14 sm:py-20">
+      <div className="mx-auto max-w-5xl px-6 lg:px-12">
+
         <Reveal>
-          <p className="eyebrow text-terra">Projects</p>
-          <h2
-            className="mt-3 text-4xl font-semibold text-ink sm:text-5xl"
-            style={{ fontFamily: 'var(--font-display)' }}
-          >
-            Things I've built.
+          <p className="eyebrow">Projects</p>
+          <h2 className="font-fraunces mt-3 text-3xl sm:text-4xl font-light text-ink leading-snug">
+            Things I&#8217;ve built.
           </h2>
-          <p className="mt-4 max-w-lg text-base text-graphite leading-relaxed">
+          <p className="mt-2 text-sm text-[var(--color-muted)] max-w-lg">
             All live products I built and maintain myself — from initial setup to production debugging.
           </p>
         </Reveal>
 
-        <div className="mt-14 space-y-8">
+        <div className="mt-6 space-y-10">
           {PROJECTS.map((p, i) => (
-            <ProjectBlock key={p.name} project={p} index={i} />
+            <ProjectCard key={p.name} project={p} index={i} />
           ))}
         </div>
+
       </div>
     </section>
   );

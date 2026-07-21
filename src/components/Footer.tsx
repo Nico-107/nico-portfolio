@@ -1,26 +1,25 @@
 export function Footer() {
+  const year = new Date().getFullYear();
   return (
-    <footer className="bg-ink border-t border-white/6 py-8">
-      <div className="mx-auto max-w-7xl px-6 lg:px-10 flex items-center justify-between gap-4 flex-wrap">
+    <footer className="bg-ink border-t border-white/8 py-10">
+      <div className="mx-auto max-w-5xl px-6 lg:px-12 flex flex-col sm:flex-row items-start sm:items-end justify-between gap-6">
+
         <span
-          className="text-lg font-semibold text-paper"
-          style={{ fontFamily: 'var(--font-display)' }}
+          className="text-lg font-light text-paper/70"
+          style={{ fontFamily: 'var(--font-display)', fontVariationSettings: "'SOFT' 100, 'WONK' 1" }}
         >
-          N<span className="text-terra">.</span>
+          N<span style={{ color: 'var(--color-accent)' }}>.</span>
         </span>
-        <div className="flex flex-col items-end gap-1">
-          <p className="text-xs text-white/25">
-            © 2026 Mikolaj Szczelkun · Barcelona
+
+        {/* Colophon */}
+        <div className="mono text-paper/25 text-right space-y-1">
+          <p>Built by Mikołaj Szczełkun · Barcelona</p>
+          <p>
+            Fraunces &amp; Newsreader &amp; IBM Plex Mono · React + Vite
           </p>
-          <a
-            href="https://nico-portfolio-gold.vercel.app"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-xs text-white/25 hover:text-white/40 transition-colors"
-          >
-            Built by Mikołaj Szczełkun ↗
-          </a>
+          <p>© {year}</p>
         </div>
+
       </div>
     </footer>
   );

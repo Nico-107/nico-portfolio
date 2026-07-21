@@ -1,12 +1,6 @@
 import { Reveal } from './Reveal';
 
-interface ContactLink {
-  label: string;
-  display: string;
-  href: string;
-}
-
-const LINKS: ContactLink[] = [
+const LINKS = [
   {
     label: 'Email',
     display: 'szczelkunmikolaj@gmail.com',
@@ -18,72 +12,58 @@ const LINKS: ContactLink[] = [
     href: 'https://www.linkedin.com/in/miko%C5%82aj-szcze%C5%82kun-270696342/',
   },
   {
-    label: 'WhatsApp / Phone',
+    label: 'GitHub',
+    display: 'github.com/Nico-107',
+    href: 'https://github.com/Nico-107',
+  },
+  {
+    label: 'WhatsApp',
     display: '+34 672 051 147',
     href: 'https://wa.me/34672051147',
   },
 ];
 
-function ArrowIcon() {
-  return (
-    <svg
-      width="18"
-      height="18"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="1.8"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      aria-hidden
-    >
-      <path d="M7 17L17 7M17 7H7M17 7v10" />
-    </svg>
-  );
-}
-
 export function Contact() {
   return (
-    <section id="contact" className="bg-ink py-24 sm:py-32 border-t border-white/6">
-      <div className="mx-auto max-w-3xl px-6 lg:px-10">
+    <section id="contact" className="bg-ink py-16 sm:py-24 border-t border-white/8">
+      <div className="mx-auto max-w-5xl px-6 lg:px-12">
+
         <Reveal>
-          <p className="eyebrow text-terra">Contact</p>
-          <h2
-            className="mt-3 text-4xl font-semibold text-paper sm:text-5xl"
-            style={{ fontFamily: 'var(--font-display)' }}
-          >
-            Let's talk.
+          <p className="eyebrow">Contact</p>
+          <h2 className="font-fraunces mt-3 text-3xl sm:text-4xl font-light text-paper leading-snug">
+            Let&#8217;s talk.
           </h2>
-          <p className="mt-4 text-base text-white/45 max-w-sm leading-relaxed">
-            Building something interesting? I'm open to conversations about
-            projects, collaboration, or a genuinely hard problem to solve.
+          <p className="mt-3 text-paper/50 text-[0.9375rem] max-w-sm leading-relaxed">
+            Building something interesting? Open to conversations about projects,
+            collaboration, or a genuinely hard problem to solve.
           </p>
         </Reveal>
 
-        <div className="mt-12 space-y-3">
+        <hr className="mt-8 border-none border-t border-white/10" />
+
+        <div className="mt-6 divide-y divide-white/8">
           {LINKS.map((l, i) => (
-            <Reveal key={l.label} delay={i * 70}>
+            <Reveal key={l.label} delay={i * 55}>
               <a
                 href={l.href}
                 target={l.href.startsWith('mailto:') ? undefined : '_blank'}
                 rel="noopener noreferrer"
-                className="group flex items-center justify-between rounded-2xl border border-white/8 bg-white/4 hover:border-terra/30 hover:bg-terra/6 p-5 transition-all duration-200"
+                className="group flex items-baseline justify-between gap-6 py-4 no-underline hover:no-underline"
               >
-                <div>
-                  <p className="text-[10px] font-semibold tracking-widest text-white/30 uppercase mb-1">
-                    {l.label}
-                  </p>
-                  <p className="font-medium text-paper">
-                    {l.display}
-                  </p>
-                </div>
-                <span className="text-white/15 group-hover:text-terra/50 transition-colors">
-                  <ArrowIcon />
+                <span className="mono text-paper/30 group-hover:text-accent transition-colors w-24 flex-shrink-0">
+                  {l.label}
+                </span>
+                <span className="text-paper/80 group-hover:text-paper transition-colors text-[0.9375rem] truncate min-w-0">
+                  {l.display}
+                </span>
+                <span className="mono text-paper/20 group-hover:text-paper/50 transition-colors flex-shrink-0">
+                  →
                 </span>
               </a>
             </Reveal>
           ))}
         </div>
+
       </div>
     </section>
   );

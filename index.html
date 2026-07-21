@@ -10,47 +10,99 @@
 
     <!-- SEO -->
     <title>Mikołaj Szczełkun — Software Builder, Barcelona</title>
-    <meta name="description" content="Mikołaj Szczełkun (Nico) — software builder in Barcelona. Projects: Tapiko, Dimension3D, PrintTrack, Paythra." />
+    <meta name="description" content="Mikołaj Szczełkun (Nico) is an 18-year-old software builder based in Barcelona. He builds and ships full-stack products — Tapiko, Dimension3D, PrintTrack, Paythra — handling frontend, backend, payments, and deployment himself." />
     <meta name="author" content="Mikołaj Szczełkun" />
+    <link rel="canonical" href="https://nico-portfolio-gold.vercel.app" />
 
     <!-- Open Graph -->
-    <meta property="og:type" content="website" />
-    <meta property="og:title" content="Mikołaj Szczełkun — Software Builder, Barcelona" />
-    <meta property="og:description" content="Mikołaj Szczełkun (Nico) — software builder in Barcelona. Projects: Tapiko, Dimension3D, PrintTrack, Paythra." />
-    <meta property="og:image" content="/og-image.svg" />
-    <meta property="og:url" content="https://nico-portfolio-gold.vercel.app" />
+    <meta property="og:type"        content="website" />
+    <meta property="og:title"       content="Mikołaj Szczełkun — Software Builder, Barcelona" />
+    <meta property="og:description" content="Mikołaj Szczełkun (Nico) is an 18-year-old software builder based in Barcelona. Full-stack products: Tapiko, Dimension3D, PrintTrack, Paythra." />
+    <meta property="og:image"       content="https://nico-portfolio-gold.vercel.app/og-image.svg" />
+    <meta property="og:url"         content="https://nico-portfolio-gold.vercel.app" />
+    <!-- TODO: replace og:image with a 1200×630 PNG — SVG is not rendered by
+         Twitter/LinkedIn/Facebook. Generate og-image.png from og-image.svg
+         (e.g. npx svgexport public/og-image.svg public/og-image.png 1200:630)
+         and update both og:image and twitter:image to point to og-image.png. -->
 
     <!-- Twitter Card -->
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Mikołaj Szczełkun — Software Builder, Barcelona" />
-    <meta name="twitter:description" content="Mikołaj Szczełkun (Nico) — software builder in Barcelona. Projects: Tapiko, Dimension3D, PrintTrack, Paythra." />
-    <meta name="twitter:image" content="/og-image.svg" />
+    <meta name="twitter:card"        content="summary_large_image" />
+    <meta name="twitter:title"       content="Mikołaj Szczełkun — Software Builder, Barcelona" />
+    <meta name="twitter:description" content="Mikołaj Szczełkun (Nico) is an 18-year-old software builder based in Barcelona. Full-stack products: Tapiko, Dimension3D, PrintTrack, Paythra." />
+    <meta name="twitter:image"       content="https://nico-portfolio-gold.vercel.app/og-image.svg" />
 
-    <!-- Structured data -->
+    <!-- Structured data — Person -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
       "@type": "Person",
       "name": "Mikołaj Szczełkun",
-      "alternateName": "Nico",
+      "alternateName": ["Nico", "Mikolaj Szczelkun"],
       "url": "https://nico-portfolio-gold.vercel.app",
-      "sameAs": [
-        "https://www.linkedin.com/in/miko%C5%82aj-szcze%C5%82kun-270696342/",
-        "https://github.com/Nico-107"
-      ],
+      "image": "https://nico-portfolio-gold.vercel.app/profile.jpg",
       "jobTitle": "Software Builder",
+      "description": "18-year-old software builder based in Barcelona. Builds and ships full-stack products for small businesses, handling frontend, backend, payments, and deployment.",
       "address": {
         "@type": "PostalAddress",
         "addressLocality": "Barcelona",
         "addressCountry": "ES"
-      }
+      },
+      "nationality": {
+        "@type": "Country",
+        "name": "Poland"
+      },
+      "sameAs": [
+        "https://www.linkedin.com/in/miko%C5%82aj-szcze%C5%82kun-270696342/",
+        "https://github.com/Nico-107"
+      ],
+      "knowsLanguage": [
+        { "@type": "Language", "name": "Polish" },
+        { "@type": "Language", "name": "English" },
+        { "@type": "Language", "name": "Spanish" },
+        { "@type": "Language", "name": "Mandarin Chinese" },
+        { "@type": "Language", "name": "Catalan" }
+      ],
+      "alumniOf": [
+        {
+          "@type": "EducationalOrganization",
+          "name": "Singapore International School of Shanghai",
+          "address": { "@type": "PostalAddress", "addressLocality": "Shanghai", "addressCountry": "CN" }
+        },
+        {
+          "@type": "EducationalOrganization",
+          "name": "Western International School of Shanghai",
+          "address": { "@type": "PostalAddress", "addressLocality": "Shanghai", "addressCountry": "CN" }
+        },
+        {
+          "@type": "EducationalOrganization",
+          "name": "Highlands School",
+          "address": { "@type": "PostalAddress", "addressLocality": "Barcelona", "addressCountry": "ES" }
+        },
+        {
+          "@type": "EducationalOrganization",
+          "name": "The British College of Gavà",
+          "address": { "@type": "PostalAddress", "addressLocality": "Gavà", "addressCountry": "ES" }
+        },
+        {
+          "@type": "CollegeOrUniversity",
+          "name": "La Salle Barcelona",
+          "parentOrganization": { "@type": "Organization", "name": "Universitat Ramon Llull" },
+          "address": { "@type": "PostalAddress", "addressLocality": "Barcelona", "addressCountry": "ES" }
+        }
+      ]
     }
     </script>
 
-    <!-- Fonts -->
+    <!-- Fonts — single request for all three families -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=Inter:wght@300..700&display=swap" rel="stylesheet" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&family=Newsreader:ital,opsz,wght@0,6..72,300..700;1,6..72,300..700&family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- LCP preload — hero photo -->
+    <link rel="preload" as="image" href="/profile.jpg" />
   </head>
   <body>
     <div id="root"></div>

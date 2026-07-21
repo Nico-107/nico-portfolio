@@ -1,86 +1,75 @@
 export function Hero() {
   return (
-    <section
-      id="top"
-      className="relative min-h-screen bg-ink flex items-center overflow-hidden pt-20"
-    >
-      {/* Subtle background glow */}
-      <div className="pointer-events-none absolute inset-0" aria-hidden>
-        <div className="absolute top-1/4 right-[-5%] w-[50vw] h-[50vw] rounded-full bg-terra/5 blur-[130px]" />
-      </div>
+    <section id="top" className="bg-paper pt-28 pb-0">
+      <div className="mx-auto max-w-5xl px-6 lg:px-12">
 
-      <div className="relative mx-auto max-w-7xl px-6 lg:px-10 py-20 lg:py-28 w-full grid lg:grid-cols-[1fr_auto] gap-16 lg:gap-24 items-center">
-        {/* Text column */}
-        <div>
-          <h1
-            className="font-semibold text-paper leading-[0.95]"
-            style={{ fontFamily: 'var(--font-display)' }}
-          >
-            <span className="block text-[clamp(2.8rem,8vw,7rem)] tracking-tight">
-              Mikolaj
-            </span>
-            <span className="block text-[clamp(2.8rem,8vw,7rem)] tracking-tight">
-              Szczelkun<span className="text-terra">.</span>
-            </span>
-          </h1>
+        {/* Masthead grid — text left, photo right */}
+        <div className="grid lg:grid-cols-[1fr_220px] gap-8 lg:gap-16 items-end">
 
-          <p
-            className="mt-4 italic text-amber text-xl font-light"
-            style={{ fontFamily: 'var(--font-display)' }}
-          >
-            Nico
-          </p>
+          {/* ── Text column: always renders first in DOM → first on mobile ── */}
+          <div>
+            <p className="mono text-[var(--color-dim)] mb-5">
+              Barcelona, Spain — {new Date().getFullYear()}
+            </p>
 
-          <p className="mt-2 text-xs text-white/25">
-            Mikołaj Szczełkun — also written Mikolaj Szczelkun
-          </p>
+            <h1 className="display text-[clamp(3.5rem,9vw,7.5rem)] text-ink">
+              Mikołaj<br />
+              Szczełkun<span style={{ color: 'var(--color-accent)' }}>.</span>
+            </h1>
 
-          <p className="mt-6 text-base text-white/60 max-w-lg leading-relaxed">
-            I'm 18, studying at La Salle Barcelona (Universitat Ramon Llull){' '}
-            <span className="text-white/35">
-              {/* TODO: fill in your exact degree/program */}
-            </span>
-            . I build and ship software — mostly for small businesses — handling
-            everything from frontend to backend, payments, and deployment myself.
-          </p>
-
-          <div className="mt-10 flex flex-wrap gap-3">
-            <a
-              href="#projects"
-              className="rounded-full bg-terra px-6 py-3 text-sm font-medium text-white hover:bg-terra/85 transition-colors"
+            <p
+              className="mt-4 text-xl italic font-light text-[var(--color-muted)]"
+              style={{ fontFamily: 'var(--font-display)', fontVariationSettings: "'SOFT' 100, 'WONK' 1" }}
             >
-              See my work
-            </a>
-            <a
-              href="#contact"
-              className="rounded-full border border-white/15 px-6 py-3 text-sm font-medium text-white/65 hover:border-white/35 hover:text-white transition-colors"
+              called Nico
+            </p>
+
+            <p className="mt-5 text-[1.0625rem] text-[var(--color-mid)] leading-[1.6] max-w-[52ch]">
+              18, studying Digital Business &amp; Innovation at La Salle Barcelona.
+              I build and ship software — mostly for small businesses — handling
+              everything from frontend to backend, payments, and deployment myself.
+            </p>
+
+            <nav className="mt-8 flex flex-wrap gap-x-7 gap-y-2" aria-label="Page sections">
+              {[
+                { href: '#about',    label: 'About'   },
+                { href: '#projects', label: 'Projects' },
+                { href: '#journey',  label: 'Journey'  },
+                { href: '#contact',  label: 'Contact'  },
+              ].map((l) => (
+                <a
+                  key={l.href}
+                  href={l.href}
+                  className="mono text-[0.75rem] text-ink no-underline hover:text-[var(--color-accent)] transition-colors"
+                >
+                  {l.label} →
+                </a>
+              ))}
+            </nav>
+          </div>
+
+          {/* ── Photo column ─────────────────────────────────────────────────
+               lg:order-last keeps photo on the RIGHT at desktop.
+               At mobile the column falls naturally BELOW the text above.
+               max-h-60 caps height on mobile so the name stays above fold.
+               TODO: swap profile.jpg for a neutral-background headshot.
+          ── */}
+          <div className="lg:order-last">
+            <div
+              className="w-full max-h-60 lg:max-h-none overflow-hidden"
+              style={{ aspectRatio: '3 / 4', background: 'var(--color-surface)' }}
             >
-              Get in touch
-            </a>
+              <img
+                src="/profile.jpg"
+                alt="Mikołaj Szczełkun"
+                fetchPriority="high"
+                className="w-full h-full object-cover object-top"
+              />
+            </div>
           </div>
         </div>
 
-        {/* Photo — order-first on mobile */}
-        <div className="flex items-center justify-center order-first lg:order-last">
-          <div className="w-52 h-52 sm:w-64 sm:h-64 lg:w-72 lg:h-72 rounded-2xl overflow-hidden border border-white/10 bg-surface-2 flex-shrink-0">
-            <img
-              src="/profile.jpg"
-              alt="Mikolaj Szczelkun"
-              className="w-full h-full object-cover object-center"
-            />
-          </div>
-        </div>
-      </div>
-
-      {/* Scroll cue */}
-      <div
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 pointer-events-none"
-        aria-hidden
-      >
-        <span className="text-[9px] tracking-[0.25em] text-white/25 uppercase">
-          Scroll
-        </span>
-        <div className="w-px h-8 bg-gradient-to-b from-white/25 to-transparent" />
+        <hr className="rule mt-12" />
       </div>
     </section>
   );
